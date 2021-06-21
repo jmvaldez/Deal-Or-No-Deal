@@ -20,7 +20,7 @@ class Briefcase extends MoneyBoard{
         setNumber(number);
     }
 
-    public int getDollarAmount() {
+    public double getDollarAmount() {
         return dollarAmount;
     }
 

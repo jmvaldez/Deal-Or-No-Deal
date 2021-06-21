@@ -1,11 +1,19 @@
 package com.dealornodeal.client;
 
+import com.apps.util.SplashApp;
 import com.dealornodeal.Game;
 
-class Main {
-    public static void main(String[] args) {
+class Main implements SplashApp {
 
-        Game game = new Game("Deal or No Deal");
-        game.startGame();
+    @Override
+    public void start() {
+        Game dealOrNoDeal = new Game();
+        dealOrNoDeal.startGame();
+    }
+
+    public static void main(String[] args) {
+        Main app = new Main();
+        app.welcome();
+        app.start();
     }
 }

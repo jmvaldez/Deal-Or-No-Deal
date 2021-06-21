@@ -6,11 +6,11 @@ public class Contestant {
     Briefcase briefcase = new Briefcase();
 
     //Ctor
-    public Contestant (){
+    public Contestant() {
     }//no-op
 
 
-    public Contestant(String contestantName){
+    public Contestant(String contestantName) {
         setContestantName(contestantName); //delegate to setter
     }
 
@@ -24,15 +24,15 @@ public class Contestant {
     }
 
     //Methods (what business method can Contestant do?)
-    public void acceptOffer(){
+    public void acceptOffer() {
         System.out.println(contestantName + " accepts offer!");
     }
 
-    public void declineOffer(){
+    public void declineOffer() {
         System.out.println(contestantName + " declines offer!");
     }
 
-    public void chooseBriefCase(){
+    public void chooseBriefCase() {
         System.out.println(contestantName + "chooses briefcase number " + briefcase.getNumber());
     }
 }

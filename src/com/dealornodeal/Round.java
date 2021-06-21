@@ -1,16 +1,10 @@
 package com.dealornodeal;
 
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+
 enum Round {
-    ROUND_1("Round 1")
-    ,ROUND_2("Round 2")
-    ,ROUND_3("Round 3")
-    ,ROUND_4("Round 4")
-    ,ROUND_5("Round 5")
-    ,ROUND_6("Round 6")
-    ,ROUND_7("Round 7")
-    ,ROUND_8("Round 8")
-    ,ROUND_9("Round 9")
-    ,ROUND_10("Round 10");
+    ROUND_1("Round 1"), ROUND_2("Round 2"), ROUND_3("Round 3"), ROUND_4("Round 4"), ROUND_5("Round 5"), ROUND_6("Round 6"), ROUND_7("Round 7"), ROUND_8("Round 8"), ROUND_9("Round 9"), ROUND_10("Round 10");
 
     //FIELD
     private final String friendlyName;
@@ -22,5 +16,11 @@ enum Round {
 
     public String getFriendlyName() {
         return friendlyName;
+    }
+
+    public Round nextRound() {
+        return this.ordinal() < Round.values().length - 1
+                ? Round.values()[this.ordinal() + 1]
+                : null;
     }
 }

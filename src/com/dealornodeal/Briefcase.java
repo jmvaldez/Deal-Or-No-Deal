@@ -6,7 +6,7 @@ class Briefcase extends MoneyBoard {
     private int dollarAmount;
 
     //Constructor
-    public Briefcase(){
+    public Briefcase() {
     }
 
     public Briefcase(int number, int dollarAmount) {
@@ -35,5 +35,4 @@ class Briefcase extends MoneyBoard {
         //create method
         System.out.println("Case #" + getNumber() + " has $");
     }
-
 }

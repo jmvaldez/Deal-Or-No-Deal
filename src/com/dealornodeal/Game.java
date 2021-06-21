@@ -6,7 +6,7 @@ public class Game {
     private final Object startRound = Round.ROUND_1.getFriendlyName();
     private final Object lastRound = Round.ROUND_10.getFriendlyName();
 
-    private Game() {
+    public Game() {
     }
 
     public Game(String name) {

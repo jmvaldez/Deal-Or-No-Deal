@@ -6,6 +6,9 @@ class Briefcase extends MoneyBoard{
     private int dollarAmount;
 
     //Constructor
+    public Briefcase(){
+    }
+
     public Briefcase(int number, int dollarAmount) {
         this.number = number;
         this.dollarAmount = dollarAmount;

@@ -1,6 +1,6 @@
 package com.dealornodeal;
 
-class Briefcase extends MoneyBoard{
+class Briefcase extends MoneyBoard {
     //Fields
     private int number;
     private int dollarAmount;
@@ -28,7 +28,7 @@ class Briefcase extends MoneyBoard{
         setDollarAmount(dollarAmount);
     }
 
-    public void openCase(){
+    public void openCase() {
         //create method
         System.out.println("Case #" + getNumber() + " has $");
     }

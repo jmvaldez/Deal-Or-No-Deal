@@ -5,7 +5,7 @@ class MoneyBoard {
     private int dollarAmount;
 
     //Constructor
-    public MoneyBoard(){
+    public MoneyBoard() {
     }
 
     public MoneyBoard(int dollarAmount) {
@@ -21,7 +21,7 @@ class MoneyBoard {
         setDollarAmount(dollarAmount);
     }
 
-    public void displayAmount(){
+    public void displayAmount() {
         //
     }
 }

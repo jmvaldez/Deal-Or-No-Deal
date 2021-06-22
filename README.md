@@ -3,4 +3,4 @@
 Deal Or No Deal Game
 
 Contributors:
-Joseph Valdez
+Joseph Valdez, Jauric Flowers, Adrian Torres

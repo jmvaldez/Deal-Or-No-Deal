@@ -8,10 +8,11 @@ public class Contestant {
     //Fields
     private String contestantName;
     int round = 1;
-    Briefcase briefcase = new Briefcase();
+    //Briefcase briefcase = new Briefcase();
     Bank bank = new Bank();
 
-    int length = bank.availableCases.size();
+
+    public int length = bank.availableCases.size();
 
     //Ctor
     public Contestant() {

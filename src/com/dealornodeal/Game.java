@@ -30,9 +30,15 @@ public class Game {
         return gameName;
     }
 
-    public void startGame() {
-
+    public Map<Integer, Double> getAvailableCases() {
+        return availableCases;
     }
+
+    public void startGame() {
+        Contestant contestant = new Contestant();
+        System.out.println(contestant.length);
+    }
+
 
     private void endGame() {
         System.out.println("lastRound");

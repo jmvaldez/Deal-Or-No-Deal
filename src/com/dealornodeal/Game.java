@@ -8,15 +8,14 @@ import java.util.Scanner;
 
 public class Game {
     private String gameName = "Deal or No Deal";
-
-    Briefcase briefcase = new Briefcase();
-    Map<Integer, Double> availableCases = briefcase.createBriefcases();
+    Bank bank = new Bank();
 
     Prompter prompter = new Prompter(new Scanner(System.in));
     String startText = prompter.info("Welcome to " + getName());
-    String pickCase = prompter.prompt("Pick your first case: " + availableCases.keySet());
+    String pickCase = prompter.prompt("Pick your first case: " + bank.getAllBriefcases().keySet());
 
     public Map<Integer, Double> storedBriefcase = contestantsStoredCase(pickCase);
+    public Map<Integer, Double> availableBriefcases = bank.getAllBriefcases();
 
     public Game() {
     }
@@ -30,15 +29,10 @@ public class Game {
         return gameName;
     }
 
-    public Map<Integer, Double> getAvailableCases() {
-        return availableCases;
-    }
-
     public void startGame() {
-        Contestant contestant = new Contestant();
-        System.out.println(contestant.length);
+        removeSelectedCase(pickCase);
+        System.out.println("availablecases" + availableBriefcases);
     }
-
 
     private void endGame() {
         System.out.println("lastRound");
@@ -49,10 +43,17 @@ public class Game {
 
         int chosenCase = Integer.parseInt(pickCase);
 
-        if (availableCases.containsKey(chosenCase)) {
-            double value = availableCases.get(chosenCase);
+        if (bank.getAllBriefcases().containsKey(chosenCase)) {
+            double value = bank.getAllBriefcases().get(chosenCase);
             map.put(chosenCase, value);
         }
+        System.out.println(map);
         return map;
+    }
+
+    private void removeSelectedCase(String pickCase) {
+        int chosenCase = Integer.parseInt(pickCase);
+        availableBriefcases.remove(chosenCase);
+
     }
 }

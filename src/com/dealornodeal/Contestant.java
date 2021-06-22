@@ -7,9 +7,11 @@ import java.util.Scanner;
 public class Contestant {
     //Fields
     private String contestantName;
-    Briefcase briefcase = new Briefcase();
     int round = 1;
-    length =bank.availableCases.size()
+    Briefcase briefcase = new Briefcase();
+    Bank bank = new Bank();
+
+    int length = bank.availableCases.size();
 
     //Ctor
     public Contestant() {
@@ -56,13 +58,13 @@ public class Contestant {
                 break;
             case 6 : length = 6;
             break;
-            case 6 : length = 5;
+            case 7 : length = 5;
                 break;
-            case 6 : length = 4;
+            case 8 : length = 4;
                 break;
-            case 6 : length = 3;
+            case 9 : length = 3;
                 break;
-            case 6 : length = 2;
+            case 10 : length = 2;
                 break;
         }
 

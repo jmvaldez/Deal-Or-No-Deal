@@ -29,7 +29,7 @@ public class Briefcase {
         for (double reward : rewardValues.rewards) {
             briefCases.put(caseNumber++, reward);
         }
-        System.out.println(briefCases);
+        System.out.println("create" + briefCases);
         return briefCases;
     }
 

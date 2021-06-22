@@ -2,12 +2,12 @@ package com.dealornodeal;
 
 import com.apps.util.Prompter;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
     private String gameName = "Deal or No Deal";
-    private Map<Integer, Double> firstSelectedCase;
 
     Briefcase briefcase = new Briefcase();
     Map<Integer, Double> availableCases = briefcase.createBriefcases();
@@ -16,12 +16,15 @@ public class Game {
     String startText = prompter.info("Welcome to " + getName());
     String pickCase = prompter.prompt("Pick your first case: " + availableCases.keySet());
 
+    public Map<Integer, Double> storedBriefcase = contestantsStoredCase(pickCase);
+
     public Game() {
     }
 
     public Game(String name) {
         this.gameName = getName();
     }
+
 
     public String getName() {
         return gameName;
@@ -35,9 +38,15 @@ public class Game {
         System.out.println("lastRound");
     }
 
-    public int contestantInput(String pickCase) {
+    public Map<Integer, Double> contestantsStoredCase(String pickCase) {
+        Map<Integer, Double> map = new HashMap<>();
+
         int chosenCase = Integer.parseInt(pickCase);
-        System.out.println(chosenCase);
-        return chosenCase;
+
+        if (availableCases.containsKey(chosenCase)) {
+            double value = availableCases.get(chosenCase);
+            map.put(chosenCase, value);
+        }
+        return map;
     }
 }

@@ -1,12 +1,8 @@
 package com.dealornodeal;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
 class Host {
     private String name = "Jarvis";
-
+    Bank bank = new Bank();
 
     public Host(String name) {
         this.name = name;
@@ -15,20 +11,15 @@ class Host {
     public double createOffer() {
         // Formulates offer based on the sum of the remaining cases
         // divided by the amount of available cases
-        Game game = new Game();
-        Collection<Double> offerFromSum = game.availableCases.values();
-        double availCases = game.availableCases.size();
         double sum = 0.0;
-        for (Double value : offerFromSum){
+        int availCases = bank.availableCases.size();
+        for (double value : bank.availableCases.values()) {
             sum += value;
         }
-        System.out.println(sum/availCases);
-        return sum/availCases;
-        //for (Map.Entry<Integer, Double> entry : )
+        return sum / availCases;
     }
 
     public double presentOffer() {
         return 0.0;
     }
-
 }

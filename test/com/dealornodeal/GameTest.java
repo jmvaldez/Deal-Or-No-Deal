@@ -2,8 +2,9 @@ package com.dealornodeal;
 
 import com.apps.util.Prompter;
 import junit.framework.TestCase;
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +12,7 @@ import java.util.Scanner;
 
 public class GameTest {
 
-    //private Game game = new Game();
+
     private Scanner scanner;
     private Prompter prompter;
 
@@ -22,7 +23,7 @@ public class GameTest {
         prompter = new Prompter(scanner);
 
         response = prompter.prompt("Pick your first case: ");
-        Assert.assertEquals("10", response);
+        assertEquals("10", response);
 
     }
 }

@@ -1,9 +1,17 @@
 package com.dealornodeal;
 
+import com.apps.util.Prompter;
+
+import java.util.Scanner;
+
 public class Contestant {
     //Fields
     private String contestantName;
+    int round = 1;
     Briefcase briefcase = new Briefcase();
+    Bank bank = new Bank();
+
+    int length = bank.availableCases.size();
 
     //Ctor
     public Contestant() {
@@ -33,6 +41,40 @@ public class Contestant {
     }
 
     public void chooseBriefCase() {
-        System.out.println(contestantName + "chooses briefcase number " + briefcase.getCaseNumber());
+        //System.out.println(contestantName + "chooses briefcase number " + briefcase.getCaseNumber());
+        //Game game = new Game();
+
+        switch (round)
+        {
+            case 1 : length = 25;
+                break;
+            case 2 : length = 19;
+                break;
+            case 3 : length  = 14;
+                break;
+            case 4 : length = 10;
+                break;
+            case 5 : length = 7;
+                break;
+            case 6 : length = 6;
+            break;
+            case 7 : length = 5;
+                break;
+            case 8 : length = 4;
+                break;
+            case 9 : length = 3;
+                break;
+            case 10 : length = 2;
+                break;
+        }
+
+        
+
+
+//        public Round nextRound() {
+//            return this.ordinal() < Round.values().length - 1
+//                    ? Round.values()[this.ordinal() + 1]
+//                    : null;
+//        }
     }
 }

@@ -33,6 +33,6 @@ public class Contestant {
     }
 
     public void chooseBriefCase() {
-        System.out.println(contestantName + "chooses briefcase number " + briefcase.getNumber());
+        System.out.println(contestantName + "chooses briefcase number " + briefcase.getCaseNumber());
     }
 }

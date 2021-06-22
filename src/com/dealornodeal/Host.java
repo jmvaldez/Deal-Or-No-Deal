@@ -1,8 +1,5 @@
 package com.dealornodeal;
 
-import java.util.Arrays;
-import java.util.List;
-
 class Host {
     private String name = "Jarvis";
 

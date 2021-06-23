@@ -25,8 +25,14 @@ public class Contestant {
     }
 
     //Methods (what business method can Contestant do?)
-    public void acceptOffer() {
-        System.out.println(contestantName + " accepts offer!");
+    public boolean acceptOffer(String offerReply) {
+        boolean acceptance = false;
+        if(offerReply.equals("Yes")){
+            acceptance = true;
+        }else if(offerReply.equals("No")){
+            acceptance = false;
+        }
+        return acceptance;
     }
 
     public void declineOffer() {

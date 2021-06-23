@@ -24,7 +24,7 @@ public class Briefcase {
         for (double reward : rewardValues.rewards) {
             briefCases.put(caseNumber++, reward);
         }
-        System.out.println("create" + briefCases);
+        System.out.println("Briefcases Created" + briefCases);
         return briefCases;
     }
 
@@ -32,8 +32,6 @@ public class Briefcase {
     public void setRewardAmount(double rewardAmount) {
         setRewardAmount(rewardAmount);
     }
-
-
 
     class RewardValues {
         //Fields
@@ -45,7 +43,6 @@ public class Briefcase {
         RewardValues() {
             //No-Arg
         }
-
 
         public List<Double> getAllRewards() {
             return Collections.unmodifiableList(rewards);

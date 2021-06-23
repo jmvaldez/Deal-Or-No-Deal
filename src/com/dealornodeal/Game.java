@@ -3,6 +3,7 @@ package com.dealornodeal;
 import com.apps.util.Prompter;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -34,54 +35,12 @@ public class Game {
         removeSelectedCase(pickFirstCase);
         prompter.info("Choose 6 briefcases " + availableBriefcases);
 
-        Round round = Round.ROUND_1;
-        switch (round) {
-            case ROUND_1:
-                prompter.info(Round.ROUND_1.getFriendlyName());
-                roundPrompt(20);
-                offer();
-            case ROUND_2:
-                prompter.info(Round.ROUND_2.getFriendlyName());
-                roundPrompt(15);
-                offer();
-            case ROUND_3:
-                prompter.info(Round.ROUND_3.getFriendlyName());
-                roundPrompt(11);
-                offer();
-            case ROUND_4:
-                prompter.info(Round.ROUND_4.getFriendlyName());
-                roundPrompt(8);
-                offer();
-            case ROUND_5:
-                prompter.info(Round.ROUND_5.getFriendlyName());
-                roundPrompt(6);
-                offer();
-            case ROUND_6:
-                prompter.info(Round.ROUND_6.getFriendlyName());
-                roundPrompt(5);
-                offer();
-            case ROUND_7:
-                prompter.info(Round.ROUND_7.getFriendlyName());
-                roundPrompt(4);
-                offer();
-            case ROUND_8:
-                prompter.info(Round.ROUND_8.getFriendlyName());
-                roundPrompt(3);
-                offer();
-            case ROUND_9:
-                prompter.info(Round.ROUND_9.getFriendlyName());
-                roundPrompt(2);
-                offer();
-            case ROUND_10:
-                prompter.info(Round.ROUND_10.getFriendlyName());
-                finalRound();
-                break;
-        }
+        gameRounds();
     }
 
     private void offer() {
         prompter.info("Offer is: " + host.createOffer(availableBriefcases));
-        replyToOffer = prompter.prompt("Do you want to accept this offer? Yes or No");
+        replyToOffer = prompter.prompt("Do you want to accept this offer? Yes or No", "^(?:Yes\\b|No\\b)","Must be 'Yes' or 'No'");
         contestant.acceptOffer(replyToOffer);
         if (replyToOffer.equals("Yes")) {
             endGame();
@@ -115,6 +74,7 @@ public class Game {
             length = availableBriefcases.size();
             pickCase = prompter.prompt("Select case ");
             prompter.info("You chose case " + pickCase);
+            prompter.info("The value of that case is " + availableBriefcases.get(Integer.parseInt(pickCase)));
             removeSelectedCase(pickCase);
             prompter.info("Choose one of the following cases " + availableBriefcases);
         }
@@ -138,5 +98,38 @@ public class Game {
         }
         prompter.info("Your case is " + map.keySet());
         return map;
+    }
+
+    private void gameRounds() {
+        Round round = Round.ROUND_1;
+        prompter.info(Round.ROUND_1.getFriendlyName());
+        roundPrompt(20);
+        offer();
+        prompter.info(Round.ROUND_2.getFriendlyName());
+        roundPrompt(15);
+        offer();
+        prompter.info(Round.ROUND_3.getFriendlyName());
+        roundPrompt(11);
+        offer();
+        prompter.info(Round.ROUND_4.getFriendlyName());
+        roundPrompt(8);
+        offer();
+        prompter.info(Round.ROUND_5.getFriendlyName());
+        roundPrompt(6);
+        offer();
+        prompter.info(Round.ROUND_6.getFriendlyName());
+        roundPrompt(5);
+        offer();
+        prompter.info(Round.ROUND_7.getFriendlyName());
+        roundPrompt(4);
+        offer();
+        prompter.info(Round.ROUND_8.getFriendlyName());
+        roundPrompt(3);
+        offer();
+        prompter.info(Round.ROUND_9.getFriendlyName());
+        roundPrompt(2);
+        offer();
+        prompter.info(Round.ROUND_10.getFriendlyName());
+        finalRound();
     }
 }

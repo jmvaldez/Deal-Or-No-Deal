@@ -12,7 +12,6 @@ enum Round {
     }
 
 
-
     public String getFriendlyName() {
         return friendlyName;
     }

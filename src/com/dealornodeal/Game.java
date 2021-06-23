@@ -48,23 +48,35 @@ public class Game {
     }
 
     private void endGame() {
-//        if (offerAcceptedValue > valueOfYourCase) {
-//            prompter.info("Congratulations! The offer was greater than you have in your case");
-//        } else {
-//            prompter.info("You made a bad decision! Your case had " + getSelectedCaseValue());
-//        }
+
+        double hostOffer = host.createOffer(availableBriefcases);
+        double contestantBriefCase = storedBriefcase.get(Integer.parseInt(pickFirstCase));
+
+        if (contestantBriefCase > hostOffer) {
+            //accepting the offer if your case is bigger than the offer
+            prompter.info("Bad choice! You had the larger reward " + contestantBriefCase);
+            System.out.println("This is your case " + contestantBriefCase);
+            System.out.println("This is the offer " + hostOffer);
+        } else {
+            //accepting the offer if your case is smaller than the offer
+            prompter.info("You made the right choice! Your case had the smaller reward " + contestantBriefCase);
+            System.out.println("This is your case " + contestantBriefCase);
+            System.out.println("This is the offer " + hostOffer);
+
+        }
         System.exit(0);
     }
 
     private void finalRound() {
-        prompter.info("If you want to keep your case type 'keep' \n If you want the remaining case type 'take'");
+        prompter.info("If you want to keep your case " + storedBriefcase.keySet()  +  " type 'keep' \n If you want the remaining case " +
+                availableBriefcases.keySet() +  " type 'take'");
         String keepOrTake = prompter.prompt("keep or take?");
         if (keepOrTake.equals("keep")) {
             prompter.info(String.valueOf(storedBriefcase.values()));
         } else if (keepOrTake.equals("take")) {
             prompter.info(String.valueOf(availableBriefcases.values()));
         }
-        endGame();
+        System.exit(0);
     }
 
     private void roundPrompt(int maxCaseCount) {
@@ -90,7 +102,7 @@ public class Game {
         availableBriefcases.remove(chosenCase);
     }
 
-    //TODO: Move to Contestant class for storage
+
     public Map<Integer, Double> contestantsStoredCase(String pickCase) {
         Map<Integer, Double> map = new HashMap<>();
 
@@ -109,30 +121,48 @@ public class Game {
         prompter.info(Round.ROUND_1.getFriendlyName());
         roundPrompt(20);
         offer();
+        prompter.info("Choose one of the following cases " + availableBriefcases);
+
         prompter.info(Round.ROUND_2.getFriendlyName());
         roundPrompt(15);
         offer();
+        prompter.info("Choose one of the following cases " + availableBriefcases);
+
         prompter.info(Round.ROUND_3.getFriendlyName());
         roundPrompt(11);
         offer();
+        prompter.info("Choose one of the following cases " + availableBriefcases);
+
         prompter.info(Round.ROUND_4.getFriendlyName());
         roundPrompt(8);
         offer();
+        prompter.info("Choose one of the following cases " + availableBriefcases);
+
         prompter.info(Round.ROUND_5.getFriendlyName());
         roundPrompt(6);
         offer();
+        prompter.info("Choose one of the following cases " + availableBriefcases);
+
         prompter.info(Round.ROUND_6.getFriendlyName());
         roundPrompt(5);
         offer();
+        prompter.info("Choose one of the following cases " + availableBriefcases);
+
         prompter.info(Round.ROUND_7.getFriendlyName());
         roundPrompt(4);
         offer();
+        prompter.info("Choose one of the following cases " + availableBriefcases);
+
         prompter.info(Round.ROUND_8.getFriendlyName());
         roundPrompt(3);
         offer();
+        prompter.info("Choose one of the following cases " + availableBriefcases);
+
         prompter.info(Round.ROUND_9.getFriendlyName());
         roundPrompt(2);
-        offer();
+        //offer();
+        prompter.info("Choose one of the following cases " + availableBriefcases);
+
         prompter.info(Round.ROUND_10.getFriendlyName());
         finalRound();
     }

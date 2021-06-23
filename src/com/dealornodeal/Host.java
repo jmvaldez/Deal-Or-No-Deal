@@ -17,6 +17,6 @@ class Host {
         for (double value : briefcases.values()) {
             sum += value;
         }
-        return sum / availCases;
+        return Math.round(sum / availCases);
     }
 }

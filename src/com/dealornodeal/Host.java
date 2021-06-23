@@ -1,25 +1,22 @@
 package com.dealornodeal;
 
+import java.util.Map;
+
 class Host {
     private String name = "Jarvis";
-    Bank bank = new Bank();
 
     public Host(String name) {
         this.name = name;
     }
 
-    public double createOffer() {
+    public double createOffer(Map<Integer, Double> briefcases) {
         // Formulates offer based on the sum of the remaining cases
         // divided by the amount of available cases
         double sum = 0.0;
-        int availCases = bank.availableCases.size();
-        for (double value : bank.availableCases.values()) {
+        int availCases = briefcases.size();
+        for (double value : briefcases.values()) {
             sum += value;
         }
         return sum / availCases;
-    }
-
-    public double presentOffer() {
-        return 0.0;
     }
 }

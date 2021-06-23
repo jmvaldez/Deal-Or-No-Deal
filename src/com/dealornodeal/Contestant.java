@@ -1,14 +1,9 @@
 package com.dealornodeal;
 
-import com.apps.util.Prompter;
-
-import java.util.Scanner;
-
 public class Contestant {
     //Fields
     private String contestantName;
     Bank bank = new Bank();
-
 
     //Ctor
     public Contestant(String contestantName) {
@@ -25,12 +20,13 @@ public class Contestant {
     }
 
     //Methods (what business method can Contestant do?)
-    public void acceptOffer() {
-        System.out.println(contestantName + " accepts offer!");
-    }
-
-    public boolean declineOffer() {
-        System.out.println(contestantName + " declines offer!");
-        return false;
+    public boolean acceptOffer(String offerReply) {
+        boolean acceptance = false;
+        if (offerReply.equals("Yes")) {
+            acceptance = true;
+        } else if (offerReply.equals("No")) {
+            acceptance = false;
+        }
+        return acceptance;
     }
 }

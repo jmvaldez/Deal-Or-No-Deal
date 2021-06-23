@@ -3,7 +3,6 @@ package com.dealornodeal;
 import com.apps.util.Prompter;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -18,7 +17,8 @@ public class Game {
     private final String startText = prompter.info("Welcome to " + getName());
 
     private final Map<Integer, Double> availableBriefcases = Bank.getAllBriefcases();
-    private final String pickFirstCase = prompter.prompt("Pick your first case: " + availableBriefcases);
+    private final String pickFirstCase = prompter.prompt("Pick your first case: " + availableBriefcases.keySet(),
+            "\\b(0?[1-9]|1[0-9]|2[0-6])\\b","Choose a value from 1-26");
 
     //TODO: move to Contestant class
     public Map<Integer, Double> storedBriefcase = contestantsStoredCase(pickFirstCase);
@@ -33,14 +33,14 @@ public class Game {
     public void startGame() {
         String pickCase;
         removeSelectedCase(pickFirstCase);
-        prompter.info("Choose 6 briefcases " + availableBriefcases);
+        prompter.info("Choose 6 briefcases " + availableBriefcases.keySet());
 
         gameRounds();
     }
 
     private void offer() {
         prompter.info("Offer is: " + host.createOffer(availableBriefcases));
-        replyToOffer = prompter.prompt("Do you want to accept this offer? Yes or No", "^(?:Yes\\b|No\\b)","Must be 'Yes' or 'No'");
+        replyToOffer = prompter.prompt("Do you want to accept this offer? Yes or No", "^(?:Yes\\b|No\\b)", "Must be 'Yes' or 'No'");
         contestant.acceptOffer(replyToOffer);
         if (replyToOffer.equals("Yes")) {
             endGame();
@@ -72,11 +72,15 @@ public class Game {
         int length;
         do {
             length = availableBriefcases.size();
-            pickCase = prompter.prompt("Select case ");
+            pickCase = prompter.prompt("Select case ","\\b(0?[1-9]|1[0-9]|2[0-6])\\b","Choose a value from the remaining cases");
             prompter.info("You chose case " + pickCase);
-            prompter.info("The value of that case is " + availableBriefcases.get(Integer.parseInt(pickCase)));
-            removeSelectedCase(pickCase);
-            prompter.info("Choose one of the following cases " + availableBriefcases);
+            if(availableBriefcases.containsKey(Integer.parseInt(pickCase))){
+                prompter.info("The value of that case is " + availableBriefcases.get(Integer.parseInt(pickCase)));
+                removeSelectedCase(pickCase);
+            } else {
+                prompter.info("That case has already been selected. Please pick a new case.");
+            }
+            prompter.info("Choose one of the following cases " + availableBriefcases.keySet());
         }
         while (length > maxCaseCount);
     }

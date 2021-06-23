@@ -43,59 +43,30 @@ public class Game {
 
         int length;
         Round round = Round.ROUND_1;
-        switch (round) {
-            case ROUND_1:
+        prompter.info(Round.ROUND_1.getFriendlyName());
+        roundPrompt(20);
 
 
-                roundPrompt(20);
+        Round.ROUND_1.nextRound();
+        prompter.info(Round.ROUND_2.getFriendlyName());
+        roundPrompt(15);
+        prompter.info(Round.ROUND_3.getFriendlyName());
+        roundPrompt(11);
+        prompter.info(Round.ROUND_4.getFriendlyName());
+        roundPrompt(8);
+        prompter.info(Round.ROUND_5.getFriendlyName());
+        roundPrompt(6);
+        prompter.info(Round.ROUND_6.getFriendlyName());
+        roundPrompt(5);
+        prompter.info(Round.ROUND_7.getFriendlyName());
+        roundPrompt(4);
+        prompter.info(Round.ROUND_8.getFriendlyName());
+        roundPrompt(3);
+        length = 4;
+        prompter.info(Round.ROUND_9.getFriendlyName());
+        roundPrompt(2);
+        prompter.info(Round.ROUND_10.getFriendlyName());
 
-
-                Round.ROUND_1.nextRound();
-
-            case ROUND_2:
-                System.out.println(Round.ROUND_2.getFriendlyName());
-
-                roundPrompt(15);
-
-
-            case ROUND_3:
-                System.out.println(Round.ROUND_3.getFriendlyName());
-                roundPrompt(11);
-
-
-            case ROUND_4:
-                System.out.println(Round.ROUND_4.getFriendlyName());
-                roundPrompt(8);
-
-
-            case ROUND_5:
-                System.out.println(Round.ROUND_5.getFriendlyName());
-                roundPrompt(6);
-
-            case ROUND_6:
-                System.out.println(Round.ROUND_6.getFriendlyName());
-                roundPrompt(5);
-
-
-            case ROUND_7:
-                System.out.println(Round.ROUND_7.getFriendlyName());
-                roundPrompt(4);
-
-            case ROUND_8:
-                System.out.println(Round.ROUND_8.getFriendlyName());
-                roundPrompt(3);
-                length = 4;
-
-            case ROUND_9:
-                System.out.println(Round.ROUND_9.getFriendlyName());
-                roundPrompt(2);
-
-
-            case ROUND_10:
-                System.out.println(Round.ROUND_10.getFriendlyName());
-
-                break;
-        }
     }
 
     private void roundPrompt(int maxCaseCount) {

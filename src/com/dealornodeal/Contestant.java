@@ -29,7 +29,8 @@ public class Contestant {
         System.out.println(contestantName + " accepts offer!");
     }
 
-    public void declineOffer() {
+    public boolean declineOffer() {
         System.out.println(contestantName + " declines offer!");
+        return false;
     }
 }

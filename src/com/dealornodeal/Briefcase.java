@@ -12,15 +12,10 @@ public class Briefcase {
     public Briefcase() {
     }
 
-    public Briefcase(int caseNumber, int rewardAmount) {
-        this.caseNumber = caseNumber;
+    public Briefcase(int rewardAmount) {
         this.rewardAmount = rewardAmount;
     }
 
-    //Methods
-    public int getCaseNumber() {
-        return caseNumber;
-    }
 
     //initializes cases with rewards
     public Map<Integer, Double> createBriefcases() {
@@ -38,10 +33,7 @@ public class Briefcase {
         setRewardAmount(rewardAmount);
     }
 
-    public void openCase() {
-        //create method
-        System.out.println("Case #" + getCaseNumber() + " has $");
-    }
+
 
     class RewardValues {
         //Fields
@@ -53,6 +45,7 @@ public class Briefcase {
         RewardValues() {
             //No-Arg
         }
+
 
         public List<Double> getAllRewards() {
             return Collections.unmodifiableList(rewards);

@@ -1,15 +1,16 @@
 package com.dealornodeal;
 
+import com.apps.util.Prompter;
+
+import java.util.Scanner;
+
 public class Contestant {
     //Fields
     private String contestantName;
-    Briefcase briefcase = new Briefcase();
+    Bank bank = new Bank();
+
 
     //Ctor
-    public Contestant() {
-    }//no-op
-
-
     public Contestant(String contestantName) {
         setContestantName(contestantName); //delegate to setter
     }
@@ -30,9 +31,5 @@ public class Contestant {
 
     public void declineOffer() {
         System.out.println(contestantName + " declines offer!");
-    }
-
-    public void chooseBriefCase() {
-        System.out.println(contestantName + "chooses briefcase number " + briefcase.getCaseNumber());
     }
 }

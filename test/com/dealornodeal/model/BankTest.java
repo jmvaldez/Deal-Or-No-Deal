@@ -1,6 +1,10 @@
 package com.dealornodeal.model;
 
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class BankTest {
@@ -9,7 +13,7 @@ public class BankTest {
     public void getAllBriefcases_shouldReturnException_whenEmpty() {
     }
 
-    @Test
+    @Test (expected = NullPointerException.class)
     public void getAllBriefcases_shouldReturnException_whenNull() {
     }
 

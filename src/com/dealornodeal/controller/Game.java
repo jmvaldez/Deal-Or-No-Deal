@@ -3,7 +3,6 @@ package com.dealornodeal.controller;
 import com.apps.util.Prompter;
 import com.dealornodeal.model.Bank;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,7 +10,7 @@ import java.util.Scanner;
 public class Game {
 
     private Prompter prompter = new Prompter(new Scanner(System.in));
-    private final String startText = prompter.info("Welcome to Deal or No Deal");
+    private final String startText = prompter.info("Welcome to Deal or No Deal!!");
 
     private final Map<Integer, Double> mapAvailableBriefcases = Bank.getAllBriefcases();
     private final String pickFirstCase = prompter.prompt("Pick your first case: \n" + mapAvailableBriefcases.keySet(),

@@ -2,7 +2,7 @@ package com.dealornodeal.model;
 
 import org.junit.Test;
 
-public class BriefcaseTest {
+public class BriefcaseFactoryTest {
 
     @Test
     public void createBriefcases() {

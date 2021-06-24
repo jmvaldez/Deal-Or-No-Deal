@@ -1,7 +1,8 @@
-package com.dealornodeal.model.client;
+package com.dealornodeal.client;
 
+import com.apps.util.Prompter;
 import com.apps.util.SplashApp;
-import com.dealornodeal.model.controller.Game;
+import com.dealornodeal.controller.Game;
 
 class Main implements SplashApp {
 

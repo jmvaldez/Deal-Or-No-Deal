@@ -1,15 +1,13 @@
 package com.dealornodeal.model;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Bank {
-    //private static BriefcaseFactory briefcase = new BriefcaseFactory();
     private static Map<Integer, Double> availableCases = BriefcaseFactory.createBriefcases();
 
     // Our new map
     public static Map<Integer, Double> getAllBriefcases() {
-       return availableCases;
+        return availableCases;
     }
 
     public static double createOffer(Map<Integer, Double> briefcases) {

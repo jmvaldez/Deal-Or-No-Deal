@@ -7,17 +7,13 @@ public class BankTest {
 
     @Test ()
     public void getAllBriefcases_shouldReturnException_whenEmpty() {
-        Bank bank = new Bank();
-        assertTrue();
     }
 
     @Test
     public void getAllBriefcases_shouldReturnException_whenNull() {
-        Bank bank = new Bank();
     }
 
     @Test
     public void createOffer() {
-
     }
 }

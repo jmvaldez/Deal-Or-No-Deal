@@ -1,6 +1,5 @@
 package com.dealornodeal.client;
 
-import com.apps.util.Prompter;
 import com.apps.util.SplashApp;
 import com.dealornodeal.controller.Game;
 

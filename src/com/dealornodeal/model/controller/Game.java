@@ -1,55 +1,60 @@
-package com.dealornodeal;
+package com.dealornodeal.model.controller;
 
 import com.apps.util.Prompter;
+import com.dealornodeal.model.Bank;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
-    private String gameName = "Deal or No Deal";
+
     private String replyToOffer;
 
-    private final Host host = new Host("Jarvis");
-    private final Contestant contestant = new Contestant("Joe");
+    private Prompter prompter = new Prompter(new Scanner(System.in));
+    private final String startText = prompter.info("Welcome to Deal or No Deal");
 
-    private final Prompter prompter = new Prompter(new Scanner(System.in));
-    private final String startText = prompter.info("Welcome to " + getName());
-
-    private final Map<Integer, Double> availableBriefcases = Bank.getAllBriefcases();
-    private final String pickFirstCase = prompter.prompt("Pick your first case: " + availableBriefcases.keySet(),
+    private final Map<Integer, Double> mapAvailableBriefcases = Bank.getAllBriefcases();
+    private final String pickFirstCase = prompter.prompt("Pick your first case: " + mapAvailableBriefcases.keySet(),
             "\\b(0?[1-9]|1[0-9]|2[0-6])\\b","Choose a value from 1-26");
 
-    //TODO: move to Contestant class
     public Map<Integer, Double> storedBriefcase = contestantsStoredCase(pickFirstCase);
+    StringBuilder availableCases;
 
     public Game() {
-    }
-
-    public String getName() {
-        return gameName;
     }
 
     public void startGame() {
         String pickCase;
         removeSelectedCase(pickFirstCase);
-        prompter.info("Choose 6 briefcases " + availableBriefcases.keySet());
-
+        availableCases = new StringBuilder(String.valueOf(mapAvailableBriefcases.keySet()).toString().replaceAll(",", " ] [ "));
+        prompter.info("Choose 6 briefcases " + availableCases);
         gameRounds();
     }
 
     private void offer() {
-        prompter.info("Offer is: " + host.createOffer(availableBriefcases));
+        prompter.info("Offer is: " + Bank.createOffer(mapAvailableBriefcases));
         replyToOffer = prompter.prompt("Do you want to accept this offer? Yes or No", "^(?:Yes\\b|No\\b)", "Must be 'Yes' or 'No'");
-        contestant.acceptOffer(replyToOffer);
+        acceptOffer(replyToOffer);
         if (replyToOffer.equals("Yes")) {
             endGame();
+        }else {
+            prompter.info("Choose one of the following cases " + availableCases);
         }
+    }
+    public boolean acceptOffer(String offerReply) {
+        boolean acceptance = false;
+        if (offerReply.equals("Yes")) {
+            acceptance = true;
+        } else if (offerReply.equals("No")) {
+            acceptance = false;
+        }
+        return acceptance;
     }
 
     private void endGame() {
 
-        double hostOffer = host.createOffer(availableBriefcases);
+        double hostOffer = Bank.createOffer(mapAvailableBriefcases);
         double contestantBriefCase = storedBriefcase.get(Integer.parseInt(pickFirstCase));
 
         if (contestantBriefCase > hostOffer) {
@@ -69,12 +74,12 @@ public class Game {
 
     private void finalRound() {
         prompter.info("If you want to keep your case " + storedBriefcase.keySet()  +  " type 'keep' \n If you want the remaining case " +
-                availableBriefcases.keySet() +  " type 'take'");
+                mapAvailableBriefcases.keySet() +  " type 'take'");
         String keepOrTake = prompter.prompt("keep or take?");
         if (keepOrTake.equals("keep")) {
             prompter.info(String.valueOf(storedBriefcase.values()));
         } else if (keepOrTake.equals("take")) {
-            prompter.info(String.valueOf(availableBriefcases.values()));
+            prompter.info(String.valueOf(mapAvailableBriefcases.values()));
         }
         System.exit(0);
     }
@@ -83,23 +88,24 @@ public class Game {
         String pickCase;
         int length;
         do {
-            length = availableBriefcases.size();
-            pickCase = prompter.prompt("Select case ","\\b(0?[1-9]|1[0-9]|2[0-6])\\b","Choose a value from the remaining cases");
+            length = mapAvailableBriefcases.size();
+            pickCase = prompter.prompt("Select case ","\\b(0?[1-9]|1[0-9]|2[0-6])\\b","Choose one of the remaining cases.");
             prompter.info("You chose case " + pickCase);
-            if(availableBriefcases.containsKey(Integer.parseInt(pickCase))){
-                prompter.info("The value of that case is " + availableBriefcases.get(Integer.parseInt(pickCase)));
+            if(mapAvailableBriefcases.containsKey(Integer.parseInt(pickCase))){
+                prompter.info("The value of that case is " + mapAvailableBriefcases.get(Integer.parseInt(pickCase)));
                 removeSelectedCase(pickCase);
             } else {
                 prompter.info("That case has already been selected. Please pick a new case.");
             }
-            prompter.info("Choose one of the following cases " + availableBriefcases.keySet());
+            availableCases = new StringBuilder(String.valueOf(mapAvailableBriefcases.keySet()).toString().replaceAll(",", " ] [ "));
+            prompter.info("Choose one of the following cases: \n" + availableCases);
         }
         while (length > maxCaseCount);
     }
 
     private void removeSelectedCase(String pickCase) {
         int chosenCase = Integer.parseInt(pickCase);
-        availableBriefcases.remove(chosenCase);
+        mapAvailableBriefcases.remove(chosenCase);
     }
 
 
@@ -108,8 +114,8 @@ public class Game {
 
         int chosenCase = Integer.parseInt(pickCase);
 
-        if (availableBriefcases.containsKey(chosenCase)) {
-            double value = availableBriefcases.get(chosenCase);
+        if (mapAvailableBriefcases.containsKey(chosenCase)) {
+            double value = mapAvailableBriefcases.get(chosenCase);
             map.put(chosenCase, value);
         }
         prompter.info("Your case is " + map.keySet());
@@ -117,53 +123,42 @@ public class Game {
     }
 
     private void gameRounds() {
-        Round round = Round.ROUND_1;
-        prompter.info(Round.ROUND_1.getFriendlyName());
+        prompter.info("Round 1");
         roundPrompt(20);
         offer();
-        prompter.info("Choose one of the following cases " + availableBriefcases);
 
-        prompter.info(Round.ROUND_2.getFriendlyName());
+        prompter.info("Round 2");
         roundPrompt(15);
         offer();
-        prompter.info("Choose one of the following cases " + availableBriefcases);
 
-        prompter.info(Round.ROUND_3.getFriendlyName());
+        prompter.info("Round 3");
         roundPrompt(11);
         offer();
-        prompter.info("Choose one of the following cases " + availableBriefcases);
 
-        prompter.info(Round.ROUND_4.getFriendlyName());
+        prompter.info("Round 4");
         roundPrompt(8);
         offer();
-        prompter.info("Choose one of the following cases " + availableBriefcases);
 
-        prompter.info(Round.ROUND_5.getFriendlyName());
+        prompter.info("Round 5");
         roundPrompt(6);
         offer();
-        prompter.info("Choose one of the following cases " + availableBriefcases);
 
-        prompter.info(Round.ROUND_6.getFriendlyName());
+        prompter.info("Round 6");
         roundPrompt(5);
         offer();
-        prompter.info("Choose one of the following cases " + availableBriefcases);
 
-        prompter.info(Round.ROUND_7.getFriendlyName());
+        prompter.info("Round 7");
         roundPrompt(4);
         offer();
-        prompter.info("Choose one of the following cases " + availableBriefcases);
 
-        prompter.info(Round.ROUND_8.getFriendlyName());
+        prompter.info("Round 8");
         roundPrompt(3);
         offer();
-        prompter.info("Choose one of the following cases " + availableBriefcases);
 
-        prompter.info(Round.ROUND_9.getFriendlyName());
+        prompter.info("Round 9");
         roundPrompt(2);
-        //offer();
-        prompter.info("Choose one of the following cases " + availableBriefcases);
 
-        prompter.info(Round.ROUND_10.getFriendlyName());
+        prompter.info("Round 10");
         finalRound();
     }
 }

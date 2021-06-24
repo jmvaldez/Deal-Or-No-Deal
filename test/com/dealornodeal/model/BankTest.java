@@ -1,4 +1,4 @@
-package com.dealornodeal;
+package com.dealornodeal.model;
 
 import org.junit.Test;
 

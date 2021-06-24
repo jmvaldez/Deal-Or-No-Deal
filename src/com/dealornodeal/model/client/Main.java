@@ -1,7 +1,10 @@
-package com.dealornodeal.client;
+package com.dealornodeal.model.client;
 
+import com.apps.util.Prompter;
 import com.apps.util.SplashApp;
-import com.dealornodeal.Game;
+import com.dealornodeal.model.controller.Game;
+
+import java.util.Scanner;
 
 class Main implements SplashApp {
 

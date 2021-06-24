@@ -1,4 +1,4 @@
-package com.dealornodeal;
+package com.dealornodeal.model;
 
 import com.apps.util.Prompter;
 import org.junit.Test;
